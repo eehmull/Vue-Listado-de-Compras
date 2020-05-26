@@ -17,9 +17,25 @@
   <body>
     <div class="container">
       <div id="lista_compras">
-        <h1>{{ header }}</h1>
+        <div class="header">
+          <h1>{{ header }}</h1>
+          <button
+            v-if="estado === 'default'"
+            class="btn btn-primary"
+            @click="cambiarEstado('edit')"
+          >
+            Agregar
+          </button>
+          <button
+            v-else
+            class="btn btn-cancel"
+            @click="cambiarEstado('default')"
+          >
+            Cancelar
+          </button>
+        </div>
 
-        <div>
+        <div v-if="estado === 'edit'">
           <input
             type="text"
             name=""
@@ -29,13 +45,15 @@
             @keyup.enter="guardarElemento"
           />
           <button class="btn btn-primary" @click="guardarElemento">
-            Agregar elemento
+            Guardar
           </button>
         </div>
 
         <ul>
           <li v-for="item in utiles">{{ item }}</li>
         </ul>
+
+        <p v-if="utiles.length === 0">No existen elementos en la lista</p>
       </div>
     </div>
 
@@ -47,12 +65,19 @@
         data: {
           header: 'Listado',
           newUtil: '',
-          utiles: ['10 cuadernos', '15 lápices', '5 cajas de colores'],
+          estado: 'default',
+          utiles: [
+            //   '10 cuadernos', '15 lápices', '5 cajas de colores'
+          ],
         },
         methods: {
           guardarElemento: function () {
             this.utiles.push(this.newUtil)
             this.newUtil = ''
+          },
+          cambiarEstado: function (nuevoEstado) {
+            this.estado = nuevoEstado
+            this.nuevoEstado = ''
           },
         },
       })
