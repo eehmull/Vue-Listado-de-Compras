@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listado de Útiles</title>
+  </head>
+  <body>
+    <div id="lista_compras">
+      <h1>{{ header }}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: '#lista_compras',
+        data: {
+          header: 'Vue iniciado con éxito, bienvenido',
+        },
+      })
+    </script>
+  </body>
+</html>
